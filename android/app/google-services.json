@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602222420628",
+    "project_id": "uas-coffeeshop",
+    "storage_bucket": "uas-coffeeshop.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602222420628:android:8ceb027ec53f5e5079ca81",
+        "android_client_info": {
+          "package_name": "com.example.uas_kopisop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmG4tNZodjNnDOO8KHFRR51ChzWODRMoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

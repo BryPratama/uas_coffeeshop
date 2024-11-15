@@ -54,8 +54,10 @@ class _HomeState extends State<Home> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Details()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Details()));
                     },
                     child: Container(
                       margin: const EdgeInsets.all(5),
@@ -112,14 +114,14 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
-              margin: EdgeInsets.only(right: 20),
+              margin: const EdgeInsets.only(right: 20),
               child: Material(
                 elevation: 5,
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -129,7 +131,7 @@ class _HomeState extends State<Home> {
                         width: 120,
                         fit: BoxFit.cover,
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,14 +142,14 @@ class _HomeState extends State<Home> {
                                 style: AppWidget.semiBoldTextFeildStyle(),
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
                               child: Text(
                                 "Kopi segar diseduh dingin",
                                 style: AppWidget.LightTextFeildStyle(),
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
                               child: Text(
                                 "Rp.20.000",
