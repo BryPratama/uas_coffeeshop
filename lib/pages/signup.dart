@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      ScaffoldMessenger.of(context).showSnackBar((SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar((const SnackBar(
           backgroundColor: Colors.orangeAccent,
           content: Text(
             "Registrasi Berhasil",
@@ -35,17 +35,17 @@ class _SignUpState extends State<SignUp> {
           ))));
       // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Bottomnav()));
+          context, MaterialPageRoute(builder: (context) => const Bottomnav()));
     } on FirebaseException catch (e) {
       if (e.code == 'weak-password') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.orangeAccent,
             content: Text(
               "Password terlalu Lemah",
               style: TextStyle(fontSize: 18),
             )));
       } else if (e.code == "email-already-in-use") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.orangeAccent,
             content: Text(
               "Email Sudah Terdaftar",

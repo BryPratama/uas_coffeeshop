@@ -10,7 +10,7 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  TextEditingController mailcontroller = new TextEditingController();
+  TextEditingController mailcontroller = TextEditingController();
 
   String email = "";
 
@@ -19,14 +19,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   resetPassword() async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
         "Email Reset Password Telah Dikirim!",
         style: TextStyle(fontSize: 18.0),
       )));
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
           "Tidak Ada User Dengan Email Tersebut",
           style: TextStyle(fontSize: 18.0),
@@ -42,12 +42,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       body: Container(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 70.0,
             ),
             Container(
               alignment: Alignment.topCenter,
-              child: Text(
+              child: const Text(
                 "Password Recovery",
                 style: TextStyle(
                     color: Colors.black,
@@ -55,10 +55,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
-            Text(
+            const Text(
               "Masukkan Email Anda",
               style: TextStyle(
                   color: Colors.black,
@@ -69,11 +69,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 child: Form(
                     key: _formkey,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: ListView(
                         children: [
                           Container(
-                            padding: EdgeInsets.only(left: 10.0),
+                            padding: const EdgeInsets.only(left: 10.0),
                             decoration: BoxDecoration(
                               border:
                                   Border.all(color: Colors.black, width: 2.0),
@@ -87,8 +87,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 }
                                 return null;
                               },
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
+                              style: const TextStyle(color: Colors.black),
+                              decoration: const InputDecoration(
                                   hintText: "Email",
                                   hintStyle: TextStyle(
                                       fontSize: 18.0, color: Colors.black),
@@ -100,7 +100,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   border: InputBorder.none),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40.0,
                           ),
                           GestureDetector(
@@ -114,11 +114,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             },
                             child: Container(
                               width: 140,
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(10)),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "Kirim Email",
                                   style: TextStyle(
@@ -129,18 +129,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 50.0,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "Belom Punya Akun?",
                                 style: TextStyle(
                                     fontSize: 18.0, color: Colors.black),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5.0,
                               ),
                               GestureDetector(
@@ -148,9 +148,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => SignUp()));
+                                          builder: (context) =>
+                                              const SignUp()));
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Buat Akun Disini",
                                   style: TextStyle(
                                       color: Colors.red,
