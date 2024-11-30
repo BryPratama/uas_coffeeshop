@@ -10,275 +10,212 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool coffee = false, tea = false, bread = false, dessert = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.only(top: 50, left: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Skibidi Coffee",
-                  style: AppWidget.boldTextFeildStyle(),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(right: 20),
-                  padding: const EdgeInsets.all(3),
-                  decoration: const BoxDecoration(color: Colors.black),
-                  child: const Icon(
-                    Icons.shopping_cart,
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 30),
-            Text("Delightful Coffee!", style: AppWidget.HeaderTextFeildStyle()),
-            Text("Discover for Coffee and More!",
-                style: AppWidget.LightTextFeildStyle()),
-            const SizedBox(height: 20),
-            Container(
-                margin: const EdgeInsets.only(right: 20), child: showItem()),
-            const SizedBox(
-              height: 30,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Details()));
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      child: Material(
-                        elevation: 5,
-                        borderRadius: BorderRadius.circular(15),
-                        child: Container(
-                          padding: const EdgeInsets.all(15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset("images/depresso.jpg",
-                                  height: 150, width: 150, fit: BoxFit.cover),
-                              Text("Espresso",
-                                  style: AppWidget.semiBoldTextFeildStyle()),
-                              const SizedBox(height: 5),
-                              Text("Rasa Pekat + Kuat",
-                                  style: AppWidget.LightTextFeildStyle()),
-                              const SizedBox(height: 5),
-                              Text("Rp.20.000",
-                                  style: AppWidget.semiBoldTextFeildStyle())
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Container(
-                    margin: const EdgeInsets.all(4),
-                    child: Material(
-                      elevation: 5,
-                      borderRadius: BorderRadius.circular(15),
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset("images/mokalate.jpg",
-                                height: 150, width: 150, fit: BoxFit.cover),
-                            Text("Mocha Latte",
-                                style: AppWidget.semiBoldTextFeildStyle()),
-                            const SizedBox(height: 5),
-                            Text("Kopi + Cokelat",
-                                style: AppWidget.LightTextFeildStyle()),
-                            const SizedBox(height: 5),
-                            Text("Rp.25.000",
-                                style: AppWidget.semiBoldTextFeildStyle())
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                "Skibidi Coffee",
+                style: AppWidget.boldTextFeildStyle(),
               ),
-            ),
-            const SizedBox(height: 30),
-            Container(
-              margin: const EdgeInsets.only(right: 20),
-              child: Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        "images/coltbru.jpg",
-                        height: 120,
-                        width: 120,
-                        fit: BoxFit.cover,
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                "Cold Brew Coffee",
-                                style: AppWidget.semiBoldTextFeildStyle(),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Container(
-                              child: Text(
-                                "Kopi segar diseduh dingin",
-                                style: AppWidget.LightTextFeildStyle(),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Container(
-                              child: Text(
-                                "Rp.20.000",
-                                style: AppWidget.semiBoldTextFeildStyle(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+              const SizedBox(height: 5),
+              Text(
+                "Delightful Coffee!",
+                style: AppWidget.HeaderTextFeildStyle(),
+              ),
+              Text(
+                "Discover for Coffee and More!",
+                style: AppWidget.LightTextFeildStyle(),
+              ),
+              const SizedBox(height: 20),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _buildMenuItem(
+                      context,
+                      imagePath: "images/depresso.jpg",
+                      title: "Espresso",
+                      description: "Kopi dengan rasa kuat dan pekat",
+                      price: "Rp.20.000",
+                    ),
+                    const SizedBox(width: 15),
+                    _buildMenuItem(
+                      context,
+                      imagePath: "images/mokalate.jpg",
+                      title: "Mocha Latte",
+                      description: "Kopi, cokelat, dan susu lembut",
+                      price: "Rp.25.000",
+                    ),
+                    const SizedBox(width: 15),
+                    _buildMenuItem(
+                      context,
+                      imagePath: "images/murica.jpg",
+                      title: "Americano",
+                      description: "Kopi hitam tanpa susu",
+                      price: "Rp.20.000",
+                    ),
+                  ],
                 ),
               ),
-            )
-          ],
+              const SizedBox(height: 20),
+              _buildListItem(
+                context,
+                imagePath: "images/tehtarik.jpg",
+                title: "Teh Tarik",
+                description: "Teh susu manis dengan foam",
+                price: "Rp.15.000",
+              ),
+              const SizedBox(height: 20),
+              _buildListItem(
+                context,
+                imagePath: "images/toast.jpg",
+                title: "Bulgogi Toast",
+                description: "Roti renyah dengan daging bulgogi",
+                price: "Rp.35.000",
+              ),
+              const SizedBox(height: 20),
+              _buildListItem(
+                context,
+                imagePath: "images/choco.jpg",
+                title: "Choco Lava Cake",
+                description: "Kue cokelat dengan filling cokelat",
+                price: "Rp.50.000",
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget showItem() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GestureDetector(
-          onTap: () {
-            coffee = true;
-            tea = false;
-            bread = false;
-            dessert = false;
-            setState(() {});
-          },
-          child: Material(
-            elevation: 5,
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: coffee ? Colors.black : Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(
-                "images/kopiikon.png",
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-                color: coffee ? Colors.white : Colors.black,
-              ),
+  Widget _buildMenuItem(BuildContext context,
+      {required String imagePath,
+      required String title,
+      required String description,
+      required String price}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Details(
+              title: title,
+              imagePath: imagePath,
+              description: description,
+              price: price,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        child: Material(
+          elevation: 5,
+          borderRadius: BorderRadius.circular(15),
+          child: Container(
+            width: 200,
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  imagePath,
+                  height: 150,
+                  width: 200,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  title,
+                  style: AppWidget.semiBoldTextFeildStyle(),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  description,
+                  style: AppWidget.LightTextFeildStyle(),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  price,
+                  style: AppWidget.semiBoldTextFeildStyle(),
+                ),
+              ],
             ),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            coffee = false;
-            tea = true;
-            bread = false;
-            dessert = false;
-            setState(() {});
-          },
-          child: Material(
-            elevation: 5,
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: tea ? Colors.black : Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(
-                "images/tea.png",
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-                color: tea ? Colors.white : Colors.black,
-              ),
+      ),
+    );
+  }
+
+  Widget _buildListItem(BuildContext context,
+      {required String imagePath,
+      required String title,
+      required String description,
+      required String price}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Details(
+              title: title,
+              imagePath: imagePath,
+              description: description,
+              price: price,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 20),
+        child: Material(
+          elevation: 5,
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  imagePath,
+                  height: 120,
+                  width: 120,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: AppWidget.semiBoldTextFeildStyle(),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        description,
+                        style: AppWidget.LightTextFeildStyle(),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        price,
+                        style: AppWidget.semiBoldTextFeildStyle(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            coffee = false;
-            tea = false;
-            bread = true;
-            dessert = false;
-            setState(() {});
-          },
-          child: Material(
-            elevation: 5,
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: bread ? Colors.black : Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(
-                "images/bret.png",
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-                color: bread ? Colors.white : Colors.black,
-              ),
-            ),
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            coffee = false;
-            tea = false;
-            bread = false;
-            dessert = true;
-            setState(() {});
-          },
-          child: Material(
-            elevation: 5,
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: dessert ? Colors.black : Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(
-                "images/dessert.png",
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-                color: dessert ? Colors.white : Colors.black,
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

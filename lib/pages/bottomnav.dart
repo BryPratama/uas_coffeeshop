@@ -16,7 +16,6 @@ class _BottomnavState extends State<Bottomnav> {
   int currentTabIndex = 0;
 
   late List<Widget> pages;
-  late Widget currentPage;
   late Home homepage;
   late Profile profile;
   late Order order;

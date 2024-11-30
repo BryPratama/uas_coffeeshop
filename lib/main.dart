@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uas_kopisop/pages/onboard.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:uas_kopisop/pages/onboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
